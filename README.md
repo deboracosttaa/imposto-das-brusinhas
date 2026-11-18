@@ -1,80 +1,77 @@
-# 🇧🇷 Imposto das Brusinhas
-### Análise de Dados das Importações Brasileiras de Vestuário (2023–2026)
+# imposto-das-brusinhas
 
-## 📌 Sobre o projeto
+Análise das importações brasileiras de vestuário (2023–2026) e do que mudou depois do fim do imposto de importação sobre compras internacionais de até US$ 50.
 
-Este projeto tem como objetivo analisar o comportamento das importações brasileiras de vestuário entre 2023 e 2026, investigando a evolução dos valores importados e as mudanças na participação dos países de origem.
+> Projeto de estudo e portfólio em Análise de Dados.
 
-O estudo tem como foco a alteração na tributação das compras internacionais de até US$ 50 realizadas por meio do Programa Remessa Conforme, com redução da alíquota do Imposto de Importação para 0% a partir de 12 de maio de 2026.
+## contexto
 
-A proposta é utilizar dados públicos para identificar movimentos no comércio exterior brasileiro e transformar grandes volumes de dados em informações relevantes para análise e tomada de decisão.
+Desde 12/05/2026, compras internacionais de até US$ 50 feitas pelo Programa Remessa Conforme passaram a ter alíquota de Imposto de Importação de 0%.
 
-## 🎯 Objetivos
+A pergunta do projeto: **o que aparece nos dados públicos de comércio exterior depois dessa mudança?**
 
-- Analisar a evolução mensal do valor FOB das importações brasileiras de vestuário.
-- Comparar o comportamento das importações antes e depois da mudança tributária de maio de 2026.
-- Identificar países que ganharam participação no valor FOB das importações.
-- Avaliar mudanças na distribuição dos países de origem.
+## perguntas
 
-## 📊 Fonte de dados
+- Como evoluiu o valor FOB mensal das importações de vestuário?
+- O comportamento muda antes e depois de maio de 2026?
+- Quais países ganharam participação?
+- A distribuição dos países de origem mudou?
 
-**Comex Stat — Ministério do Desenvolvimento, Indústria, Comércio e Serviços (MDIC)**
+## dados
 
-Os dados utilizados são provenientes das bases públicas de comércio exterior brasileiro.
+| item | detalhe |
+|---|---|
+| fonte | [Comex Stat (MDIC)](https://comexstat.mdic.gov.br/) |
+| período | 2023 a 2026 (2026: jan–out) |
+| produtos | NCM capítulos 61 e 62 (vestuário) |
+| métrica | valor FOB em US$ |
 
-- Período: 2023 a 2026.
-- Produtos: capítulos 61 e 62 da NCM (vestuário).
-- Indicador principal: valor FOB, em dólares americanos (US$).
-- Período disponível de 2026: janeiro a outubro.
+## stack
 
-Fonte: https://comexstat.mdic.gov.br/
+```
+python · pandas · jupyter notebook · power bi
+```
 
-## 🛠️ Ferramentas e tecnologias
+SQL / PL-SQL entram na lógica de consulta e agregação.
 
-- **Python:** tratamento e preparação dos dados.
-- **Pandas:** manipulação e análise de dados.
-- **Jupyter Notebook:** exploração e desenvolvimento das análises.
-- **Power BI:** construção do dashboard e visualização dos resultados.
-- **SQL / PL-SQL:** conhecimentos aplicados à lógica de consulta e análise de dados.
+## como foi feito
 
-## 🔎 Metodologia
+1. Download das bases públicas de importação
+2. Filtro nos capítulos 61 e 62 da NCM
+3. Tratamento e consolidação das bases anuais
+4. Análise da evolução mensal do valor FOB
+5. Comparação de **jan–abr** vs **jun–set** de 2026
+6. Cálculo da participação (%) por país e variação em pontos percentuais
+7. Dashboard no Power BI
 
-O projeto foi desenvolvido em etapas:
+Maio/2026 ficou **fora** da comparação principal, por ser o mês em que a mudança entrou em vigor (12/05).
 
-1. Obtenção dos dados públicos de importação.
-2. Filtragem das operações relacionadas aos capítulos 61 e 62 da NCM.
-3. Tratamento e consolidação das bases anuais.
-4. Análise da evolução mensal do valor FOB.
-5. Comparação dos períodos de janeiro a abril e junho a setembro de 2026.
-6. Cálculo da participação percentual dos países e de sua variação em pontos percentuais.
-7. Construção de dashboard no Power BI.
+## resultados
 
-Maio de 2026 foi excluído da comparação principal por ser o mês de implementação da mudança tributária, ocorrida em 12/05/2026.
+Comparando jan–abr com jun–set de 2026:
 
-## 📈 Principais resultados
+| indicador | antes | depois | variação |
+|---|---|---|---|
+| valor FOB | ~US$ 1,108 bi | US$ 906 mi | -18,25% |
+| participação da China | 60,53% | 50,07% | -10,46 p.p. |
 
-Na comparação entre janeiro–abril e junho–setembro de 2026:
+Maiores ganhos de participação: Vietnã, Peru, Paraguai, Camboja e Turquia.
 
-- O valor FOB passou de aproximadamente US$ 1,108 bilhão para US$ 906 milhões, uma redução de 18,25%.
-- A participação da China passou de 60,53% para 50,07%, uma redução de 10,46 pontos percentuais.
-- Entre os países com maiores ganhos de participação estão Vietnã, Peru, Paraguai, Camboja e Turquia.
+## limitações
 
-## ⚠️ Limitações da análise
+Os dados do Comex Stat são agregados. Eles **não** identificam:
 
-Os dados do Comex Stat representam importações agregadas e não identificam:
+- plataformas específicas (Shein, Shopee, AliExpress, Temu)
+- compras individuais de consumidores
+- o valor de cada encomenda
+- se cada operação se enquadra no Remessa Conforme
 
-- Plataformas de comércio eletrônico específicas, como Shein, Shopee, AliExpress ou Temu.
-- Compras individuais ou encomendas de consumidores.
-- Valor individual de cada encomenda.
-- Elegibilidade de cada operação às regras do Programa Remessa Conforme.
+Os resultados mostram movimentos observados depois da mudança tributária. Eles **não** permitem afirmar que a redução do imposto causou essas variações.
 
-Portanto, os resultados demonstram movimentos observados após a mudança tributária, mas não permitem afirmar que a redução do imposto foi a causa direta das variações identificadas.
-
-## 📁 Estrutura do projeto
+## estrutura
 
 ```text
 imposto-das-brusinhas/
-│
 ├── dados/
 ├── notebooks/
 ├── powerbi/
@@ -83,10 +80,17 @@ imposto-das-brusinhas/
 └── requirements.txt
 ```
 
-## 🚀 Objetivo de aprendizado
+## rodando localmente
 
-Este projeto também faz parte da minha jornada de desenvolvimento em Análise de Dados e Business Intelligence, aplicando conhecimentos de programação, tratamento de dados, análise exploratória e visualização de informações a um problema real.
+```bash
+git clone https://github.com/<seu-usuario>/imposto-das-brusinhas.git
+cd imposto-das-brusinhas
+pip install -r requirements.txt
+jupyter notebook notebooks/
+```
 
----
+## sobre
 
-**Projeto desenvolvido para fins de estudo e portfólio em Análise de Dados.**
+Parte da minha transição para Análise de Dados e BI: programação, tratamento de dados, análise exploratória e visualização aplicadas a um problema real.
+
+**Débora Costa** · [LinkedIn](https://www.linkedin.com/in/deboracosttaa)
