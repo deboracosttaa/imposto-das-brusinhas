@@ -57,6 +57,10 @@ Comparando jan–abr com jun–set de 2026:
 
 Maiores ganhos de participação: Vietnã, Peru, Paraguai, Camboja e Turquia.
 
+## Visualização dos dados
+
+![Gráfico das importações](Grafico.png)
+
 ## limitações
 
 Os dados do Comex Stat são agregados. Eles **não** identificam:
